@@ -214,6 +214,96 @@ export class BRC20WalletProvider extends EventEmitter {
     });
   };
 
+  getBRC20List = async (cursor = 0, size = 20) => {
+    return this._request({
+      method: 'getBRC20List',
+      params: {
+        cursor,
+        size
+      }
+    });
+  };
+
+  getBRC20Summary = async (ticker: string) => {
+    return this._request({
+      method: 'getBRC20Summary',
+      params: {
+        ticker
+      }
+    });
+  };
+
+  getAddressRecentHistory = async () => {
+    return this._request({
+      method: 'getAddressRecentHistory'
+    });
+  };
+
+  getAddressUtxo = async (ticker: string) => {
+    return this._request({
+      method: 'getAddressUtxo',
+      params: {
+        ticker
+      }
+    });
+  };
+
+  getTokenTransferableList = async (ticker: String, cursor = 0, size = 20) => {
+    return this._request({
+      method: 'getTokenTransferableList',
+      params: {
+        ticker,
+        cursor,
+        size
+      }
+    });
+  };
+
+  getInscriptionUtxo = async (inscriptionId: string) => {
+    return this._request({
+      method: 'getInscriptionUtxo',
+      params: {
+        inscriptionId
+      }
+    });
+  };
+
+  getInscriptionUtxos = async (inscriptionIds: string[]) => {
+    return this._request({
+      method: 'getInscriptionUtxos',
+      params: {
+        inscriptionIds
+      }
+    });
+  };
+
+  getFeeSummary = async () => {
+    return this._request({
+      method: 'getFeeSummary'
+    });
+  };
+
+  getInscriptionSummary = async () => {
+    return this._request({
+      method: 'getInscriptionSummary'
+    });
+  };
+
+  getInscribeResult = async (orderId: String) => {
+    return this._request({
+      method: 'getInscribeResult',
+      params: {
+        orderId
+      }
+    });
+  };
+
+  getMultiAddressAssets = async () => {
+    return this._request({
+      method: 'getMultiAddressAssets'
+    });
+  };
+
   signMessage = async (text: string, type: string) => {
     return this._request({
       method: 'signMessage',

@@ -90,6 +90,109 @@ class ProviderController extends BaseController {
       return {list,total};
     };
 
+
+    //edit start
+
+    @Reflect.metadata('SAFE', true)
+    getBRC20List = async (req) => {
+      const { data: { params: { cursor,size } } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getAddressTokenBalances(account.address,cursor,size);
+      return result;
+    };
+
+
+    @Reflect.metadata('SAFE', true)
+    getBRC20Summary = async (req) => {
+      const { data: { params: { ticker } } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getAddressTokenSummary(account.address,ticker);
+      return result;
+    };
+
+
+    @Reflect.metadata('SAFE', true)
+    getAddressRecentHistory = async () => {
+      const account = await wallet.getCurrentAccount();
+      if (!account) return null;
+      const result = await wallet.openapi.getAddressRecentHistory(account.address);
+      return result
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getAddressUtxo = async () => {
+      const account = await wallet.getCurrentAccount();
+      if (!account) return null;
+      const result = await wallet.openapi.getAddressUtxo(account.address);
+      return result
+    };
+
+
+    @Reflect.metadata('SAFE', true)
+    getTokenTransferableList = async (req) => {
+      const { data: { params: { ticker,cursor,size } } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getTokenTransferableList(account.address,ticker,cursor,size);
+      return result;
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getInscriptionUtxo = async (req) => {
+      const { data: { params: { inscriptionId} } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getInscriptionUtxo(inscriptionId);
+      return result;
+    };
+
+
+    @Reflect.metadata('SAFE', true)
+    getInscriptionUtxos = async (req) => {
+      const { data: { params: { inscriptionIds} } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getInscriptionUtxos(inscriptionIds);
+      return result;
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getFeeSummary = async () => {
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getFeeSummary()
+      return result;
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getInscriptionSummary = async () => {
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getInscriptionSummary();
+      return result;
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getInscribeResult = async (req) => {
+      const { data: { params: { orderId} } } = req;
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getInscribeResult(orderId);
+      return result;
+    };
+
+    @Reflect.metadata('SAFE', true)
+    getMultiAddressAssets = async () => {
+      const account = await wallet.getCurrentAccount();
+      if(!account) return ''
+        const result= await wallet.openapi.getMultiAddressAssets(account.address)
+      return result;
+    };
+
+//changes end
+
   @Reflect.metadata('SAFE', true)
     getBalance = async () => {
       const account = await wallet.getCurrentAccount();
